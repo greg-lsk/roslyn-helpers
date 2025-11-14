@@ -1,7 +1,7 @@
 ﻿using Microsoft.CodeAnalysis;
 
 
-namespace RoslynDiagnosticHelpers.Descriptor;
+namespace RoslynHelpers.Descriptor;
 
 public interface IDiagnosticDescriptor
 {

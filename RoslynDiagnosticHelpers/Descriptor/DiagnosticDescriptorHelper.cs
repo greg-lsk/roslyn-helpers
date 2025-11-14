@@ -1,8 +1,8 @@
 ﻿using Microsoft.CodeAnalysis;
-using RoslynDiagnosticHelpers.Descriptor;
+using RoslynHelpers.Descriptor;
 
 
-namespace RoslynDiagnosticHelpers;
+namespace RoslynHelpers.Descriptor;
 
 public static class DiagnosticDescriptorHelper
 { 

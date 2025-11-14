@@ -6,13 +6,17 @@ namespace RoslynHelpers.LocalizableResource;
 
 public static class LocalizableStringHelper
 {
-    public static LocalizableString From<TResource>(string resourceName, ResourceManager resourceManager)
+    public static LocalizableString From<TResource, TResourceId>(ResourceManager manager)
+        where TResource : class
+        where TResourceId : struct, IResource
     {
-        return new LocalizableResourceString(resourceName, resourceManager, typeof(TResource));
+        return new LocalizableResourceString(new TResourceId().GetFrom<TResource>(), manager, typeof(TResource));
     }
 
-    public static LocalizableString From<TResource>(string resourceName, ResourceManager resourceManager, params string[] formatArguments)
+    public static LocalizableString From<TResource, TResourceId>(ResourceManager manager, params string[] formatArguments)
+        where TResource : class
+        where TResourceId : struct, IResource
     {
-        return new LocalizableResourceString(resourceName, resourceManager, typeof(TResource), formatArguments);
+        return new LocalizableResourceString(new TResourceId().GetFrom<TResource>(), manager, typeof(TResource), formatArguments);
     }
 }

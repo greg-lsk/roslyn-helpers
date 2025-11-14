@@ -1,64 +1,45 @@
 ﻿using Microsoft.CodeAnalysis;
-using RoslynHelpers.LocalizableResource;
 using RoslynHelpers.Tests.LocalizableResource.TestData;
+using RoslynHelpers.Tests.ResourceResolving.TestData;
 
 
 namespace RoslynHelpers.Tests.LocalizableResource;
 
 public class LocalizableStringCreationTests
 {
-    [Fact]
-    public void CreatesLocalizableResourceString()
+    public static TheoryData<LocalizableString, string> FromHelperAndNameofSourceMemberNoFormatCollection
+        => ResourceResolvingTestData.FromHelperAndNameofSourceMemberNoFormatData;
+
+    public static TheoryData<LocalizableString, string> FromHelperAndNameofSourceMemberFormatCollection
+        => ResourceResolvingTestData.FromHelperAndNameofSourceMemberFormatData;
+
+
+    [Theory]
+    [MemberData(nameof(FromHelperAndNameofSourceMemberNoFormatCollection))]
+    public void YieldsSameResultAs_LocalizableResourceStringCtor_NoFormat(LocalizableString fromHelper, string nameofSourceMember)
     {
-        var withNoFormat = LocalizableStringHelper.From<TestResources>
-        (
-            TestResources.TestLocalizableResource,
-            TestResources.ResourceManager
-        );
-
-        var withFormat = LocalizableStringHelper.From<TestResources>
-        (
-            TestResources.TestLocalizableResource,
-            TestResources.ResourceManager,
-            ["a", "ddd"]
-        );
-
-        Assert.IsType<LocalizableResourceString>(withNoFormat);
-        Assert.IsType<LocalizableResourceString>(withFormat);
-    }
-
-    [Fact]
-    public void YieldsSameResultAs_LocalizableResourceStringCtor()
-    {
-        var withNoFormatFromHelper = LocalizableStringHelper.From<TestResources>
-        (
-            TestResources.TestLocalizableResource,
-            TestResources.ResourceManager
-        );
         var withNoFormatFromCtor = new LocalizableResourceString
         (
-            TestResources.TestLocalizableResource,
+            nameofSourceMember,
             TestResources.ResourceManager,
             typeof(TestResources)
         );
 
+        Assert.True(fromHelper.Equals(withNoFormatFromCtor));
+    }
 
-        var withFormatFromHelper = LocalizableStringHelper.From<TestResources>
-        (
-            TestResources.TestLocalizableResource,
-            TestResources.ResourceManager,
-            ["a", "ddd"]
-        );
+    [Theory]
+    [MemberData(nameof(FromHelperAndNameofSourceMemberFormatCollection))]
+    public void YieldsSameResultAs_LocalizableResourceStringCtor_Format(LocalizableString fromHelper, string nameofSourceMember)
+    {
         var withFormatFromCtor = new LocalizableResourceString
         (
-            TestResources.TestLocalizableResource,
+            nameofSourceMember,
             TestResources.ResourceManager,
             typeof(TestResources),
-            ["a", "ddd"]
+            ResourceResolvingTestData.DummyFormat
         );
 
-
-        Assert.True(withNoFormatFromHelper.Equals(withNoFormatFromCtor));
-        Assert.True(withFormatFromHelper.Equals(withFormatFromCtor));
+        Assert.True(fromHelper.Equals(withFormatFromCtor));
     }
 }

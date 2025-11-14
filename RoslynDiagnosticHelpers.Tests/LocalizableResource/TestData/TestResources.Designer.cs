@@ -61,11 +61,29 @@ namespace RoslynHelpers.Tests.LocalizableResource.TestData {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to DummyDescription.
+        /// </summary>
+        internal static string AnalyzerDescription {
+            get {
+                return ResourceManager.GetString("AnalyzerDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to DummyMessage.
+        /// </summary>
+        internal static string AnalyzerMessageFormat {
+            get {
+                return ResourceManager.GetString("AnalyzerMessageFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to DummyStringValue.
         /// </summary>
-        internal static string TestLocalizableResource {
+        internal static string AnalyzerTitle {
             get {
-                return ResourceManager.GetString("TestLocalizableResource", resourceCulture);
+                return ResourceManager.GetString("AnalyzerTitle", resourceCulture);
             }
         }
     }

@@ -1,0 +1,16 @@
+﻿using Microsoft.CodeAnalysis;
+using RoslynHelpers.Descriptor;
+using static RoslynHelpers.Tests.Descriptor.TestData.DescriptorTestData;
+
+
+namespace RoslynHelpers.Tests.Descriptor;
+
+public class DescriptorCreationTests
+{
+    [Fact]
+    public void DiagnosticDescriptorHelper_CreatesDiagnosticDescriptor()
+    {
+        var created = DiagnosticDescriptorHelper.Create<UnlocalizableDescriptor>();
+        Assert.IsType<DiagnosticDescriptor>(created);
+    }
+}

@@ -1,9 +1,9 @@
 ﻿using System.Reflection;
 using System.Linq.Expressions;
-using RoslynHelpers._Internals.ExceptionHandling;
+using RoslynHelpers.Descriptor.Exceptions;
 
 
-namespace RoslynHelpers.ResourceResolving;
+namespace RoslynHelpers.Descriptor;
 
 internal static class ResolverBuilder<TResourceSource>
 {
@@ -31,7 +31,7 @@ internal static class ResolverBuilder<TResourceSource>
     private static PropertyInfo TryGetProperty<T>(string propertyName)
     {
         return typeof(TResourceSource).GetProperty(propertyName, BindingFlags.Static | BindingFlags.NonPublic) 
-        ?? throw ExceptionHandler.ForInvalidResourceResolution<TResourceSource, T>
+        ?? throw new UnableToResolveException<TResourceSource, T>
         (
             propertyName,
             BindingFlags.Static,

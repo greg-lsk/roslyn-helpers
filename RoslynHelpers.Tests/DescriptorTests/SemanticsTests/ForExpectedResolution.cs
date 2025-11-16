@@ -1,13 +1,13 @@
-﻿using RoslynHelpers.Semantics;
-using RoslynHelpers.Tests._Common;
+﻿using RoslynHelpers.Tests._Common;
+using RoslynHelpers.Descriptor.Semantics;
 
 
-namespace RoslynHelpers.Tests.IResourceTests;
+namespace RoslynHelpers.Tests.DescriptorTests.SemanticsTests;
 
-public class ForExpectedInstantiation
+public class ForExpectedResolution
 {
     [Fact]
-    internal void AnalyzerTitle_InstantiatesAsExpected()
+    internal void AnalyzerTitle_ResolvesAsExpected()
     {
         var calculated = new AnalyzerTitle().ResolveFrom<StubResources>();
         var expected = nameof(StubResources.AnalyzerTitle);
@@ -16,7 +16,7 @@ public class ForExpectedInstantiation
     }
 
     [Fact]
-    internal void AnalyzerDescription_InstantiatesAsExpected()
+    internal void AnalyzerDescription_ResolvesAsExpected()
     {
         var calculated = new AnalyzerDescription().ResolveFrom<StubResources>();
         var expected = nameof(StubResources.AnalyzerDescription);
@@ -25,7 +25,7 @@ public class ForExpectedInstantiation
     }
 
     [Fact]
-    internal void AnalyzerMessageFormat_InstantiatesAsExpected()
+    internal void AnalyzerMessageFormat_ResolvesAsExpected()
     {
         var calculated = new AnalyzerMessageFormat().ResolveFrom<StubResources>();
         var expected = nameof(StubResources.AnalyzerMessageFormat);

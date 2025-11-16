@@ -1,3 +1,3 @@
-﻿namespace RoslynHelpers.ResourceResolving;
+﻿namespace RoslynHelpers.Descriptor;
 
 internal delegate TResource Resolver<TResourceSource, TResource>();

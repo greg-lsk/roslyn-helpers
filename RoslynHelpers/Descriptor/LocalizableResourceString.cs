@@ -1,9 +1,9 @@
 ﻿using Microsoft.CodeAnalysis;
 using RoslynHelpers.Semantics;
-using RoslynHelpers.ResourceResolving;
+using RoslynHelpers.Descriptor.ResourceResolution;
 
 
-namespace RoslynHelpers.GenericLocalizableResourceString;
+namespace RoslynHelpers.Descriptor;
 
 public static class LocalizableResourceString<TResource> where TResource : struct, ISemanticOf<string>
 {
@@ -12,7 +12,7 @@ public static class LocalizableResourceString<TResource> where TResource : struc
         return new LocalizableResourceString
         (
             nameOfLocalizableResource: new TResource().ResolveFrom<TResourceSource>(),
-            resourceManager:           DiagnosticDescriptorResourceResolver<TResourceSource>.ForResourceManager(),
+            resourceManager:           DiagnosticDescriptorResolver<TResourceSource>.ForResourceManager(),
             resourceSource:            typeof(TResourceSource)
         );
     }
@@ -23,7 +23,7 @@ public static class LocalizableResourceString<TResource> where TResource : struc
         return new LocalizableResourceString
         (
             nameOfLocalizableResource: new TResource().ResolveFrom<TResourceSource>(),
-            resourceManager:           DiagnosticDescriptorResourceResolver<TResourceSource>.ForResourceManager(),
+            resourceManager:           DiagnosticDescriptorResolver<TResourceSource>.ForResourceManager(),
             resourceSource:            typeof(TResourceSource),
             formatArguments:           formatArguments
         );

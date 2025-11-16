@@ -1,8 +1,9 @@
 ﻿using System.Resources;
 
-namespace RoslynHelpers.ResourceResolving;
 
-internal static class DiagnosticDescriptorResourceResolver<TResourceSource>
+namespace RoslynHelpers.Descriptor.ResourceResolution;
+
+internal static class DiagnosticDescriptorResolver<TResourceSource>
 {
     internal readonly static Resolver<TResourceSource, string> ForTitle 
         = ResolverBuilder<TResourceSource>.NameOf<string>(ResourceIdentifiers.AnalyzerTitle);

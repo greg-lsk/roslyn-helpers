@@ -1,4 +1,4 @@
-﻿namespace RoslynHelpers._Internals.ResourceResolving;
+﻿namespace RoslynHelpers.Descriptor.ResourceResolution;
 
 internal static class ResourceIdentifiers
 {

@@ -8,48 +8,53 @@ namespace RoslynHelpers.Tests.DescriptorTests;
 
 public class ForLocalizableString
 {
-    public static TheoryData<Func<LocalizableString>, string> CustomCreation_ResourceName_Data => new()
+    [Fact]
+    internal void SameResultYield_AsConventionalCtor_ForTitle()
     {
-        { LocalizableResourceString<AnalyzerTitle>.From<StubResources>,         nameof(StubResources.AnalyzerTitle) },
-        { LocalizableResourceString<AnalyzerDescription>.From<StubResources>,   nameof(StubResources.AnalyzerDescription) },
-        { LocalizableResourceString<AnalyzerMessageFormat>.From<StubResources>, nameof(StubResources.AnalyzerMessageFormat) }
-    };
-    [Theory]
-    [MemberData(nameof(CustomCreation_ResourceName_Data))]
-    internal void CustomCreation_YieldsSameResultsAs_ConventionalCtor(Func<LocalizableString> customCreation, string resourceName)
-    {
-        var custom = customCreation();
-        var expected = new LocalizableResourceString
-        (
-            resourceName,
-            StubResources.ResourceManager,
-            typeof(StubResources)
-        );
+        var expected = CreateLocalizableResourceStringConventionally(nameof(StubResources.AnalyzerTitle));
+        var expectedFormatted = CreateLocalizableResourceStringConventionally(nameof(StubResources.AnalyzerTitle), _stubFormat);
+
+        var custom = LocalizableResourceString<AnalyzerTitle>.From<StubResources>();
+        var customFormatted = LocalizableResourceString<AnalyzerTitle>.From<StubResources>(_stubFormat);
 
         Assert.Equal(expected, custom);
+        Assert.Equal(expectedFormatted, customFormatted);
+    }
+
+    [Fact]
+    internal void SameResultYield_AsConventionalCtor_ForDescription()
+    {
+        var expected = CreateLocalizableResourceStringConventionally(nameof(StubResources.AnalyzerDescription));
+        var expectedFormatted = CreateLocalizableResourceStringConventionally(nameof(StubResources.AnalyzerDescription), _stubFormat);
+
+        var custom = LocalizableResourceString<AnalyzerDescription>.From<StubResources>();
+        var customFormatted = LocalizableResourceString<AnalyzerDescription>.From<StubResources>(_stubFormat);
+
+        Assert.Equal(expected, custom);
+        Assert.Equal(expectedFormatted, customFormatted);
+    }
+
+    [Fact]
+    internal void SameResultYield_AsConventionalCtor_ForMessageFormat()
+    {
+        var expected = CreateLocalizableResourceStringConventionally(nameof(StubResources.AnalyzerMessageFormat));
+        var expectedFormatted = CreateLocalizableResourceStringConventionally(nameof(StubResources.AnalyzerMessageFormat), _stubFormat);
+
+        var custom = LocalizableResourceString<AnalyzerMessageFormat>.From<StubResources>();
+        var customFormatted = LocalizableResourceString<AnalyzerMessageFormat>.From<StubResources>(_stubFormat);
+
+        Assert.Equal(expected, custom);
+        Assert.Equal(expectedFormatted, customFormatted);
     }
 
 
-    public static TheoryData<Func<string[], LocalizableString>, string> CustomCreationWithFormat_ResourceName_Data => new()
-    {
-        { LocalizableResourceString<AnalyzerTitle>.From<StubResources>,         nameof(StubResources.AnalyzerTitle) },
-        { LocalizableResourceString<AnalyzerDescription>.From<StubResources>,   nameof(StubResources.AnalyzerDescription) },
-        { LocalizableResourceString<AnalyzerMessageFormat>.From<StubResources>, nameof(StubResources.AnalyzerMessageFormat) }
-    };
-    [Theory]
-    [MemberData(nameof(CustomCreationWithFormat_ResourceName_Data))]
-    internal void CustomCreationWithFormat_YieldsSameResultsAs_ConventionalCtor(Func<string[], LocalizableString> customCreationWithFormat, string resourceName)
-    {
-        string[] stubFormat = ["stub", "format"];
-        var custom = customCreationWithFormat(stubFormat);
-        var expected = new LocalizableResourceString
-        (
-            resourceName,
-            StubResources.ResourceManager,
-            typeof(StubResources),
-            stubFormat
-        );
+    private readonly static string[] _stubFormat = ["stub", "format"]; 
+    private delegate LocalizableResourceString ConventionalLocalizableResourceStringCreation(string resourceName, string[]? format = null);
 
-        Assert.Equal(expected, custom);
-    }
+    private static ConventionalLocalizableResourceStringCreation CreateLocalizableResourceStringConventionally =>
+    (string resourceName, string[]? format = null) =>
+    {
+        return format is null ? new(resourceName, StubResources.ResourceManager, typeof(StubResources)) 
+                                : new(resourceName, StubResources.ResourceManager, typeof(StubResources), format);
+    };
 }

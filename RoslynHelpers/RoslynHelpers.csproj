@@ -7,7 +7,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.CodeAnalysis" Version="4.14.0" />
-	<InternalsVisibleTo Include="RoslynHelpers.Tests"/>
+	<InternalsVisibleTo Include="RoslynHelpers.Tests" />
   </ItemGroup>
 
 </Project>

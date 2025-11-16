@@ -5,9 +5,7 @@ using System.Collections.Generic;
 
 namespace RoslynHelpers.Exceptions;
 
-public sealed class InvalidResourceResolutionException<TResourceSource, TResource>
-    : Exception
-    where TResourceSource : class
+public sealed class InvalidResourceResolutionException<TResourceSource, TResource> : Exception
 {
     public string ResourceName { get; }
     public IEnumerable<BindingFlags> BindingFlags { get; }

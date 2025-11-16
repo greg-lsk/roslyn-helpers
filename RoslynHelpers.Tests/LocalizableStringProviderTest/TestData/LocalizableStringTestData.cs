@@ -1,8 +1,8 @@
 ﻿using Microsoft.CodeAnalysis;
 using RoslynHelpers.Tests._Common;
 using RoslynHelpers.GenericLocalizableResourceString;
-using RoslynHelpers._Internals.ResourceResolving;
-using RoslynHelpers.GenericLocalizableResourceString;
+using RoslynHelpers.Semantics;
+using RoslynHelpers.ResourceResolving;
 
 
 namespace RoslynHelpers.Tests.LocalizableResource.TestData;

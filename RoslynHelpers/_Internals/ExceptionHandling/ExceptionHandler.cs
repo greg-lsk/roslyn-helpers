@@ -10,5 +10,5 @@ internal static class ExceptionHandler
     internal static InvalidResourceResolutionException<TResourceSource, TResource> ForInvalidResourceResolution<TResourceSource, TResource>(
         string resource,
         params BindingFlags[] bindingFlags
-    ) where TResourceSource : class => new(resource, bindingFlags);
+    ) => new(resource, bindingFlags);
 }

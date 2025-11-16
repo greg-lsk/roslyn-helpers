@@ -1,10 +1,11 @@
 ﻿using Microsoft.CodeAnalysis;
-using RoslynHelpers._Internals.ResourceResolving;
+using RoslynHelpers.Semantics;
+using RoslynHelpers.ResourceResolving;
 
 
 namespace RoslynHelpers.GenericLocalizableResourceString;
 
-public static class LocalizableResourceString<TResource> where TResource : struct, ISemanticOf
+public static class LocalizableResourceString<TResource> where TResource : struct, ISemanticOf<string>
 {
     public static LocalizableString From<TResourceSource>() where TResourceSource : class
     {

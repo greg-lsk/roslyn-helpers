@@ -1,5 +1,5 @@
-﻿using RoslynHelpers.Tests._Common;
-using RoslynHelpers.GenericLocalizableResourceString;
+﻿using RoslynHelpers.Semantics;
+using RoslynHelpers.Tests._Common;
 
 
 namespace RoslynHelpers.Tests.IResourceTests;

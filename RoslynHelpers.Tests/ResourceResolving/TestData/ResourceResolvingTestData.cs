@@ -1,6 +1,6 @@
 ﻿using System.Resources;
 using RoslynHelpers.Tests._Common;
-using RoslynHelpers._Internals.ResourceResolving;
+using RoslynHelpers.ResourceResolving;
 
 
 namespace RoslynHelpers.Tests.ResourceResolving.TestData;

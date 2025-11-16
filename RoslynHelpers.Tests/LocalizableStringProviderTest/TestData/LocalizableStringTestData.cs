@@ -1,10 +1,11 @@
 ﻿using Microsoft.CodeAnalysis;
 using RoslynHelpers.Tests._Common;
-using RoslynHelpers.LocalizableResource;
+using RoslynHelpers.GenericLocalizableResourceString;
 using RoslynHelpers._Internals.ResourceResolving;
+using RoslynHelpers.GenericLocalizableResourceString;
 
 
-namespace RoslynHelpers.Tests.LocalizableStringProviderTest.TestData;
+namespace RoslynHelpers.Tests.LocalizableResource.TestData;
 
 internal static class LocalizableStringTestData
 {
@@ -13,7 +14,7 @@ internal static class LocalizableStringTestData
     internal static TheoryData<Func<LocalizableString>, Func<LocalizableString>> FromCustomAPI_FromConventionalCtor_Data => new()
     {
         {
-            LocalizableStringHelper.From<StubResources, AnalyzerTitle>, 
+            LocalizableResourceString<AnalyzerTitle>.From<StubResources>, 
             () => new LocalizableResourceString
             (
                 ResourceIdentifiers.AnalyzerTitle,
@@ -22,7 +23,7 @@ internal static class LocalizableStringTestData
             )
         },
         {
-            LocalizableStringHelper.From<StubResources, AnalyzerDescription>,
+            LocalizableResourceString<AnalyzerDescription>.From<StubResources>,
             () => new LocalizableResourceString
             (
                 ResourceIdentifiers.AnalyzerDescription,
@@ -31,7 +32,7 @@ internal static class LocalizableStringTestData
             )
         },
         {
-            LocalizableStringHelper.From<StubResources, AnalyzerMessageFormat>,
+            LocalizableResourceString<AnalyzerMessageFormat>.From<StubResources>,
             () => new LocalizableResourceString
             (
                 ResourceIdentifiers.AnalyzerMessageFormat,
@@ -40,7 +41,7 @@ internal static class LocalizableStringTestData
             )
         },
         {
-            () => LocalizableStringHelper.From<StubResources, AnalyzerTitle>(_dummyFormat),
+            () => LocalizableResourceString<AnalyzerTitle>.From<StubResources>(_dummyFormat),
             () => new LocalizableResourceString
             (
                 ResourceIdentifiers.AnalyzerTitle,
@@ -50,7 +51,7 @@ internal static class LocalizableStringTestData
             )
         },
         {
-            () => LocalizableStringHelper.From<StubResources, AnalyzerDescription>(_dummyFormat),
+            () => LocalizableResourceString<AnalyzerDescription>.From<StubResources>(_dummyFormat),
             () => new LocalizableResourceString
             (
                 ResourceIdentifiers.AnalyzerDescription,
@@ -60,7 +61,7 @@ internal static class LocalizableStringTestData
             )
         },
         {
-            () => LocalizableStringHelper.From<StubResources, AnalyzerMessageFormat>(_dummyFormat),
+            () =>LocalizableResourceString<AnalyzerMessageFormat>.From<StubResources>(_dummyFormat),
             () => new LocalizableResourceString
             (
                 ResourceIdentifiers.AnalyzerMessageFormat,

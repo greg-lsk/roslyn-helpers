@@ -1,8 +1,8 @@
 ﻿using Microsoft.CodeAnalysis;
-using RoslynHelpers.Tests.LocalizableResource.TestData;
+using RoslynHelpers.Tests.LocalizableStringProviderTest.TestData;
 
 
-namespace RoslynHelpers.Tests.LocalizableResource;
+namespace RoslynHelpers.Tests.LocalizableStringProviderTest;
 
 public class LocalizableStringTests
 {

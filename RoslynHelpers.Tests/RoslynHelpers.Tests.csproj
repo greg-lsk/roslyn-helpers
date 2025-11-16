@@ -24,17 +24,17 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Update="LocalizableResource\TestData\TestResources.Designer.cs">
+    <Compile Update="_Common\StubResources.Designer.cs">
       <DesignTime>True</DesignTime>
       <AutoGen>True</AutoGen>
-      <DependentUpon>TestResources.resx</DependentUpon>
+      <DependentUpon>StubResources.resx</DependentUpon>
     </Compile>
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="LocalizableResource\TestData\TestResources.resx">
+    <EmbeddedResource Update="_Common\StubResources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
-      <LastGenOutput>TestResources.Designer.cs</LastGenOutput>
+      <LastGenOutput>StubResources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
   </ItemGroup>
 

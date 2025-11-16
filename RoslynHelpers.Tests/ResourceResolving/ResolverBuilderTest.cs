@@ -1,8 +1,8 @@
 ﻿using System.Resources;
 using RoslynHelpers.Exceptions;
+using RoslynHelpers.Tests._Common;
 using RoslynHelpers._Internals.ResourceResolving;
 using RoslynHelpers.Tests.ResourceResolving.TestData;
-using RoslynHelpers.Tests.LocalizableResource.TestData;
 
 
 namespace RoslynHelpers.Tests.ResourceResolving;
@@ -26,9 +26,9 @@ public class ResolverBuilderTest
     {
         var invalidResourceMemberName = "ResourceManagggger";
 
-        Assert.Throws<InvalidResourceResolutionException<TestResources, ResourceManager>>
+        Assert.Throws<InvalidResourceResolutionException<StubResources, ResourceManager>>
         (
-            () => ResolverBuilder<TestResources>.ValueOf<ResourceManager>(invalidResourceMemberName)
+            () => ResolverBuilder<StubResources>.ValueOf<ResourceManager>(invalidResourceMemberName)
         );
     }
 }
